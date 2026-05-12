@@ -16,6 +16,15 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
+        
+        /* Modal styles */
+        .modal {
+            animation: fadeIn 0.2s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100">
@@ -23,10 +32,18 @@
     <!-- Navbar -->
     <nav class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <!-- Logo -->
             <a href="https://digitalviper.github.io" class="flex items-center gap-3 text-2xl font-semibold">
                 <span class="text-emerald-500">◉</span>
                 digitalviper
             </a>
+
+            <!-- Tip Me Button -->
+            <button onclick="openTipModal()" 
+                    class="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 active:scale-95 transition-all rounded-2xl font-medium text-sm">
+                <i class="fa-solid fa-heart"></i>
+                Tip Me
+            </button>
         </div>
     </nav>
 
@@ -62,34 +79,59 @@
                 </div>
             </a>
 
-            <!-- Placeholder cards – just copy-paste and update for future projects -->
-            <!-- 
-            <a href="https://digitalviper.github.io/YourNextRepo" 
+            <!-- TeslaGames Card -->
+            <a href="https://digitalviper.github.io/TeslaGames" 
                target="_blank"
                class="project-card bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden group">
-                <div class="h-52 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                    <i class="fa-solid fa-??? text-8xl text-white/90 group-hover:scale-110 transition-transform"></i>
+                <div class="h-52 bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center">
+                    <i class="fa-solid fa-car-side text-8xl text-white/90 group-hover:scale-110 transition-transform"></i>
                 </div>
                 <div class="p-8">
                     <div class="flex justify-between items-start mb-4">
-                        <h2 class="text-2xl font-semibold">Next Project Name</h2>
-                        <span class="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-2xl">LIVE</span>
+                        <h2 class="text-2xl font-semibold">TeslaGames</h2>
+                        <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded-2xl">LIVE</span>
                     </div>
                     <p class="text-zinc-400 text-base leading-relaxed">
-                        Short description of what this project does.
+                        Fun mini games to play on your Tesla.
                     </p>
-                    <div class="mt-8 flex items-center gap-2 text-blue-400 text-sm font-medium">
+                    <div class="mt-8 flex items-center gap-2 text-emerald-400 text-sm font-medium">
                         Open Project 
                         <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                     </div>
                 </div>
             </a>
-            -->
 
         </div>
 
-        <div class="text-center mt-16 text-zinc-500 text-sm">
-            <!--Want to add another subproject? Just create a new repo, enable GitHub Pages, and copy one of the cards above.-->
+        <!-- === TIP MODAL === -->
+        <div id="tipModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+            <div class="modal bg-zinc-900 border border-zinc-700 rounded-3xl max-w-sm w-full overflow-hidden">
+                <!-- Modal Header -->
+                <div class="px-8 py-6 border-b border-zinc-700">
+                    <h2 class="text-2xl font-semibold flex items-center gap-3">
+                        <i class="fa-solid fa-heart text-emerald-400"></i>
+                        Buy me a coffee ☕
+                    </h2>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-10 text-center">
+                    <p class="text-zinc-400 mb-8 text-lg">
+                        Scan with Venmo to send a tip
+                    </p>
+
+                    <!-- Venmo QR Code -->
+                    <div class="mx-auto mb-8 bg-white p-6 rounded-3xl inline-block shadow-2xl">
+                        <img 
+                            src="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=https://venmo.com/code?user_id=2418685692084224706" 
+                            alt="Venmo QR Code"
+                            class="w-64 h-64 object-contain rounded-2xl"
+                        >
+                    </div>
+
+                    <p class="text-emerald-400 font-medium text-2xl">@jordan-wald-1</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -99,5 +141,32 @@
             Created with Grok by <a href="https://github.com/digitalviper" class="hover:text-white" target="_blank">@digitalviper</a>
         </div>
     </footer>
+
+    <script>
+        function openTipModal() {
+            document.getElementById('tipModal').classList.remove('hidden');
+            document.getElementById('tipModal').classList.add('flex');
+        }
+
+        function closeTipModal() {
+            const modal = document.getElementById('tipModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close when clicking outside
+        document.getElementById('tipModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTipModal();
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                closeTipModal();
+            }
+        });
+    </script>
 </body>
 </html>
