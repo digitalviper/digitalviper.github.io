@@ -16,15 +16,6 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        
-        /* Modal styles */
-        .modal {
-            animation: fadeIn 0.2s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100">
@@ -37,13 +28,6 @@
                 <span class="text-emerald-500">◉</span>
                 digitalviper
             </a>
-
-            <!-- Tip Me Button -->
-            <button onclick="openTipModal()" 
-                    class="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 active:scale-95 transition-all rounded-2xl font-medium text-sm">
-                <i class="fa-solid fa-heart"></i>
-                Tip Me
-            </button>
         </div>
     </nav>
 
@@ -103,37 +87,6 @@
             </a>
 
         </div>
-
-        <!-- === TIP MODAL === -->
-        <div id="tipModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
-            <div class="modal bg-zinc-900 border border-zinc-700 rounded-3xl max-w-sm w-full overflow-hidden">
-                <!-- Modal Header -->
-                <div class="px-8 py-6 border-b border-zinc-700">
-                    <h2 class="text-2xl font-semibold flex items-center gap-3">
-                        <i class="fa-solid fa-heart text-emerald-400"></i>
-                        Buy me a coffee ☕
-                    </h2>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="p-10 text-center">
-                    <p class="text-zinc-400 mb-8 text-lg">
-                        Scan with Venmo to send a tip
-                    </p>
-
-                    <!-- Venmo QR Code -->
-                    <div class="mx-auto mb-8 bg-white p-6 rounded-3xl inline-block shadow-2xl">
-                        <img 
-                            src="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=https://venmo.com/code?user_id=2418685692084224706" 
-                            alt="Venmo QR Code"
-                            class="w-64 h-64 object-contain rounded-2xl"
-                        >
-                    </div>
-
-                    <p class="text-emerald-400 font-medium text-2xl">@jordan-wald-1</p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -143,31 +96,5 @@
         </div>
     </footer>
 
-    <script>
-        function openTipModal() {
-            document.getElementById('tipModal').classList.remove('hidden');
-            document.getElementById('tipModal').classList.add('flex');
-        }
-
-        function closeTipModal() {
-            const modal = document.getElementById('tipModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        // Close when clicking outside
-        document.getElementById('tipModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeTipModal();
-            }
-        });
-
-        // Close with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                closeTipModal();
-            }
-        });
-    </script>
 </body>
 </html>
